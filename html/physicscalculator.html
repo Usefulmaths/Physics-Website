@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/Physics Website 2/css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/Physics Website 2/css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/Physics Website 2/js/controllers.js"></script>
+    <!-- hu -->
+</head>
+<body>
+
+
+<!-- MENU SELECTION BAR -->
+<div class="container-fluid">
+
+    <form action="index.html">
+        <button class="btn btn-primary col-md-3" type="submit"><p class="menuPadding">Home</p></button>
+    </form>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle col-md-3" type="button" id="menu1"
+                data-toggle="dropdown"><p class="menuPadding">Physics Documentation</p>
+        </button>
+        <ul class="dropdown-menu col-md-3" style="left: 526px; top: 70px;" role="menu" aria-labelledby="menu1">
+            <li class="bg-primary" role="presentation"><a role="menuitem" tabindex="-1" href="/Physics Website 2/html/firstyear.html"><p class="menuPadding" style="color: white;">First Year</p></a></li>
+            <li class="bg-primary" role="presentation"><a role="menuitem" tabindex="-1" href="#"><p class="menuPadding" style="color: white;">Second Year</p></a></li>
+            <li class="bg-primary" role="presentation"><a role="menuitem" tabindex="-1" href="#"><p class="menuPadding" style="color: white;">Third Year</p></a></li>
+        </ul>
+    </div>
+
+
+    <button class="btn btn-primary col-md-3"><p class="menuPadding">Physics Grades</p></button>
+    <form action="physicscalculator.html">
+        <button class="btn btn-primary col-md-3" type="submit" id="calculatorForm"><p class="menuPadding">Physics Calculator</p></button>
+    </form>
+
+
+</div>
+
+
+<div class="container-fluid" ng-controller="LiamController">
+
+    <!-- let's just start out with a simple button -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="col-md-12 form-horizontal">
+                <div class="row-md-3"><h3 class="text-center bg-primary">First Year</h3></div>
+                <div class="row-md-3 form-group" ng-repeat="n in firstYear"
+                        >
+                    <label for="hurrrrrdurrrr" class="text-primary col-sm-6 control-label" style="text-align: left">
+                        {{n.name}}:
+                    </label>
+
+                    <div class="col-sm-6"><!-- v-- input-mini? -->
+                        <input id="hurrrrrdurrrr" type="number" max="100" class="form-control"
+                               ng-model="firstYearResults[n.code]"/>
+                        {{liam}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-12 form-horizontal">
+                <div class="row-md-3"><h3 class="text-center bg-primary">Second Year</h3>
+                </div>
+                <div class="row-md-3 form-group" ng-repeat="n in secondYear">
+                    <label class="text-primary col-sm-6 control-label" style="text-align: left">
+                        {{n.name}}:
+                    </label>
+
+                    <div class="col-sm-6"><!-- v-- input-mini? -->
+                        <input type="number" maxlength="3" class="form-control"
+                               ng-model="secondYearResults[n.code]"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-12 form-horizontal">
+                <div class="row-md-3"><h3 class="text-center bg-primary">Third Year</h3>
+                </div>
+                <div class="row-md-3 form-group" ng-repeat="n in thirdYear">
+                    <label class="text-primary col-sm-6 control-label" style="text-align: left">
+                        {{n.name}}:
+                    </label>
+
+                    <div class="col-sm-6"><!-- v-- input-mini? -->
+                        <input type="number" maxlength="3" class="form-control"
+                               ng-model="thirdYearResults[n.code]"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="col-md-12 form-horizontal">
+                <div class="row-md-3"><h3 class="text-center bg-primary">Fourth Year</h3>
+                </div>
+                <div class="row-md-3 form-group" ng-repeat="n in fourthYear">
+                    <label class="text-primary col-sm-6 control-label" style="text-align: left">
+                        {{n.name}}:
+                    </label>
+
+                    <div class="col-sm-6"><!-- v-- input-mini? -->
+                        <input type="number" maxlength="3" class="form-control"
+                               ng-model="fourthYearResults[n.code]"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row text-primary" ng-repeat="dec in decs">
+        <div class="col-md-3">
+            <label>>
+                {{dec.name}}:
+            </label>
+            <input type="text" class="form-control" ng-model="decMath[dec.code]"/>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3" ng-repeat="n in results track by $index">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>
+                        Non-Weighted Total:
+                    </th>
+                    <td> {{n[0]}}</td>
+                </tr>
+                <tr>
+                    <th>
+                        Weighted Total:
+                    </th>
+                    <td> {{n[1]}}</td>
+                </tr>
+                <tr>
+                    <th>
+                        % Degree:
+                    </th>
+                    <td>{{Math.round(n[[1]]*multiplier[$index]*100)/100}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-3">
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th>
+                        Degree Class:
+                    </th>
+                    <td ng-model="overallClass">
+                        {{overallDecClass}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        % DEC:
+                    </th>
+                    <td ng-model="overallTotal">
+                        {{decResults}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        % Module Degree:
+                    </th>
+                    <td ng-model="overallTotal">
+                        {{overallTotal}}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        % Total Degree:
+                    </th>
+                    <td ng-model="overallTotal">
+                        {{overallDecTotal}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <button class="btn btn-primary" ng-click="calculateAverage();">Calculate my average!</button>
+</div>
+</body>
+</html>
